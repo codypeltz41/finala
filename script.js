@@ -1,11 +1,17 @@
-document.addEventListener("DOMContentLoaded", function() {
-  const celsiusInput = document.getElementById("celsius");
-  const fahrenheitInput = document.getElementById("fahrenheit");
-  const convertButton = document.getElementById("convert-button");
+const display = document.querySelector("#display");
+const btns = document.querySelectorAll(".num, .operator");
 
-  convertButton.addEventListener("click", function() {
-    const celsius = parseFloat(celsiusInput.value);
-    const fahrenheit = (celsius * 9/5) + 32;
-    fahrenheitInput.value = fahrenheit.toFixed(2);
+btns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    let value = e.target.innerText;
+    display.value += value;
   });
+});
+
+document.querySelector("#clear").addEventListener("click", (e) => {
+  display.value = "";
+});
+
+document.querySelector("#equals").addEventListener("click", (e) => {
+  display.value = eval(display.value);
 });
